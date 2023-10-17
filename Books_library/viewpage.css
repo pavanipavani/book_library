@@ -1,0 +1,91 @@
+		.nav
+		{
+			padding:8px 10px 8px 1px;
+			display:flex;
+			background-color:ghostwhite;
+			position:fixed;
+			top:0px ;
+			left:0px;
+			width:100%;
+			
+			
+		}
+		.main
+		{
+			padding:50px 10px 10px 10px;
+		}
+		.view
+		{
+			font-size:35px;
+			margin:20px 595px 10px 595px;
+			padding:10px 10px;
+			border:2px solid black;
+			border-radius:50px;
+			text-align:center;
+		}
+		.imagesize
+		{
+			height:40px;
+			background:none;
+			margin-top:1px;
+		}
+		.titles
+		{
+			margin:10px 200px 10px 500px;
+			font-size:20px;
+			display:flex;
+			
+		}
+		.a
+		{
+			color:black;
+			margin-left:150px;
+			text-decoration:none;
+			font-size:25px;
+			
+		}		
+		
+		.display
+		{
+			display:flex;
+			flex-wrap:wrap;
+		}
+		.divTag
+		{
+			width:270px;
+			height:250px;
+			margin:40px;
+			background-color:black;
+			color:white;
+			border-radius:5px;
+			
+			
+		}
+		.divTag:hover
+		{
+			background-color:darkmagenta;
+			box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+		}
+		
+		
+		.img
+		{
+			margin-left:80px;
+			margin-top:10px;
+			border-radius:5px;
+		}
+		.name
+		{
+			font-size:22px;
+			margin:10px 50px 10px 85px;
+		}
+		.author
+		{
+			font-size:20px;
+			margin:10px 50px 10px 105px;
+		}
+		.publisher
+		{
+			font-size:15px;
+			margin:10px 50px 10px 80px;
+		}

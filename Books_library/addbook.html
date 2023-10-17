@@ -1,0 +1,190 @@
+<html>
+	<head>
+		<title>addbook</title>
+		<style>
+		.nav
+		{
+			padding:8px 10px 8px 1px;
+			display:flex;
+			background-color:teal;
+			position:fixed;
+			top:0px;
+			left:0px;
+			width:100%;
+			
+		}
+		.imagesize
+		{
+			height:40px;
+			background:none;
+			margin-top:1px;
+		}
+		.titles
+		{
+			margin:10px 200px 10px 500px;
+			font-size:20px;
+			display:flex;
+			
+		}
+		.a
+		{
+			color:white;
+			margin-left:150px;
+			text-decoration:none;
+			font-size:25px;
+			
+		}
+		
+		.form
+		{
+			display:flex;
+			flex-direction:column;
+			padding:10px 10px;
+			margin:20px 470px 10px 470px;
+			background-color:teal;
+		
+		}
+		
+		input
+		{
+			font-size:25px;
+			width:400px;
+			border-radius:5px;
+			margin-left:15px;
+			margin-top:20px;
+			height:40px;	
+		}
+		.text
+		{
+			font-size:20px;
+			margin-top:30px;
+			color:white;
+			width:100px;
+		}
+		.button
+		{
+			margin:20px 120px;
+			padding:10px 10px;
+			background-color:violet;
+			border-radius:20px;
+		}
+		.display
+		{
+			display:flex;
+		}
+		.addbook
+		{
+			font-size:30px;
+			margin-left:610px;
+			margin-top:80px;
+			padding:10px 10px;
+			border:1px solid black;
+			color:black;
+			border-radius:30px;
+			margin-right:630px;
+			text-align:center;
+			
+		}
+		</style>
+	</head>
+	<body>
+		<nav class="nav">
+			<a href="LibraryHomePage.html">
+				<img class="imagesize" src="/home/jtbb/Books_library/library1.png" alt="image"/>
+
+			</a>
+			<div class="titles">
+			<a  class="a" href="addbook.html"><b>Addbooks</b></a>
+			<a  class="a" href="viewpage.html"><b>Allbooks</b></a>
+			<a class="a" href="loginLibrary.html"><b>Login</b></a>
+			
+			</div>
+		</nav>
+		<div class="addbook"><b>AddBooks</b></div>
+		
+		<div class="form">
+		   	 <div class="display">
+				<div class="text"><b>Name :</b></div>
+				<input class="name" type="text" placeholder="Name"/>
+		   	 </div>
+		    
+		      	<div class="display">
+				<div class="text"><b>Author: </b></div>
+				<input  class="author" type="text" placeholder="author"/>
+			 </div>
+			
+			 <div class="display"> 
+				<div  class="text"><b>Year :</b></div>
+				<input  class="year" type="number" placeholder="year"/>
+			</div>
+		    
+			
+			 <div class="display">
+				<div class="text"><b>Price :</b></div>
+				<input  class="price" type="number" placeholder="price"/>
+			</div>
+		    
+			
+			 <div class="display">
+				<div class="text"><b>TypeofBook:</b></div>
+				<input  class="type" type="text" placeholder="type of books"/>
+			</div>
+		    
+			
+			 <div class="display">
+				<div class="text"><b>Publisher:</b></div>
+				<input  class="publisher" type="text" placeholder="publisher"/>
+			</div>
+		    
+			
+			 <div class="display">
+				<div class="text"><b>S.no :</b></div>
+				<input  class="serial_number" type="number" placeholder="serial-number"/>
+			</div>
+		    
+			
+			 <div class="display">
+				<div class="text"><b>Rate :</b></div>
+				<input  class="rate" type="number" placeholder="rate"/>
+			</div>
+		    
+			
+			<button class="button">AddBook</button>
+		</div>
+	</body>
+	<script>
+	    let result=JSON.parse(localStorage.getItem("bookDetails"))||[];
+	    let button=document.querySelector(".button");
+	    button.onclick = function()
+	    {
+		let name=document.querySelector(".name").value;
+		let author=document.querySelector(".author").value;
+		let year=document.querySelector(".year").value;
+		let price=document.querySelector(".price").value;
+		let type=document.querySelector(".type").value;
+		let publisher=document.querySelector(".publisher").value;
+		let serial_number=document.querySelector(".serial_number").value;
+		let rate=document.querySelector(".rate").value;
+		if(name !=="" && author !=="" && year!=="" && price!=="" && type!=="" && publisher!=="" && serial_number!=="" && rate!==""){
+			alert("successfull");
+			
+		localStorage.setItem("bookDetails",JSON.stringify([...result,{name,author,year,price,type,publisher,serial_number,rate}]));
+		console.log(localStorage.getItem("bookDetails"));
+		alert("successfull");
+		window.location.href="viewpage.html";
+			
+			
+		}
+		else
+		{
+			alert("fill all details");
+			return;
+		}
+		
+	   }
+	</script>
+</html>
+
+
+
+

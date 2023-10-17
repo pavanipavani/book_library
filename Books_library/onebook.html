@@ -1,0 +1,332 @@
+<html>
+	<head>
+		<title>onebook</title>
+		<style>
+		body
+		{
+			background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEJiqTuna_mPV6wr4S9qnCUk_hM0TtJgqSeA&usqp=CAU);
+			background-size:cover;
+		}
+			
+		.nav
+		{
+			padding:8px 10px 8px 1px;
+			display:flex;
+			background-color:coral;
+			position:fixed;
+			top:0px;
+			left:0px;
+			width:100%;	
+		}
+		.imagesize
+		{
+			height:40px;
+			background:none;
+			margin-top:1px;
+		}
+		.titles
+		{
+			margin:10px 200px 10px 500px;
+			font-size:20px;
+			display:flex;	
+		}
+		.a
+		{
+			color:white;
+			margin-left:140px;
+			text-decoration:none;
+			font-size:25px;	
+		}
+		.main
+		{
+			padding:10px 10px 10px 10px;
+			margin:100px 500px 50px 500px;	
+		}
+		.display
+		{
+			margin-left:2px;
+			background-color:coral;
+			opacity:0.8;
+			
+		}
+		input
+		{
+			
+			font-size:20px;
+			padding:8px 8px;
+			border:2px solid black;
+			
+		}
+		.inputBox
+		{
+			font-size:30px;
+			background-color:darksalmon;
+		}
+		
+		
+		</style>
+	</head>
+	<body>
+		<nav class="nav">
+			<a href="LibraryHomePage.html">
+				<img class="imagesize" src="/home/jtbb/Books_library/library1.png" alt="image"/>
+
+			</a>
+			<div class="titles">
+				<a  class="a" href="addbook.html"><b>Addbooks</b></a>
+				<a  class="a" href="viewpage.html"><b>Allbooks</b></a>
+				<a class="a" href="signupLibrary.html"><b>SignUp</b></a>
+				
+			</div>
+		</nav>
+		<div class="main">
+		<div class="display"></div>
+		
+		</div>
+		
+			<div class="inputBox"></div>
+		
+	<body>
+	<script>
+		let result=JSON.parse(localStorage.getItem("onebook"));
+		let totalData=JSON.parse(localStorage.getItem("bookDetails"));
+		let display=document.querySelector(".display");
+		let inputBox=document.querySelector(".inputBox");
+		
+		let divTag=document.createElement("div");
+		let name=document.createElement("div");
+		name.innerText=result.name;
+		name.style.marginLeft="150px";
+		name.style.fontSize="20px";
+		
+		
+		let image=document.createElement("img");
+		image.setAttribute("src",result.avatar);
+		image.style.marginLeft="140px";
+		
+		let Author=document.createElement("div");
+		Author.innerText="Author : "+result.author;
+		Author.style.marginTop="40px";
+		Author.style.padding="10px 10px";
+		Author.style.border="1px solid black";
+		Author.style.fontSize="20px";
+		
+		
+		let Year=document.createElement("div");
+		Year.innerText="Year : "+result.year;
+		Year.style.padding="10px 10px";
+		Year.style.border="1px solid black";
+		Year.style.fontSize="20px";
+		
+		let Price=document.createElement("div");
+		Price.innerText="Price : "+result.price;
+		Price.style.padding="10px 10px";
+		Price.style.border="1px solid black";
+		Price.style.fontSize="20px";
+		
+		let type=document.createElement("div");
+		type.innerText="Type of Book : "+result.type;
+		type.style.padding="10px 10px";
+		type.style.border="1px solid black";
+		type.style.fontSize="20px";
+		
+		let Publisher=document.createElement("div");
+		Publisher.innerText="Publisher : "+result.publisher;
+		Publisher.style.padding="10px 10px";
+		Publisher.style.border="1px solid black";
+		Publisher.style.fontSize="20px";
+		
+		let serialnumber=document.createElement("div");
+		serialnumber.innerText="serial number : "+result.serial_number;
+		serialnumber.style.padding="10px 10px";
+		serialnumber.style.border="1px solid black";
+		serialnumber.style.fontSize="20px";
+		
+		let rate=document.createElement("div");
+		rate.innerText="rate : "+result.rate;
+		rate.style.padding="10px 10px";
+		rate.style.border="1px solid black";
+		rate.style.fontSize="20px";
+		
+		let edit=document.createElement("button");
+		edit.innerText="Edit";
+		edit.style.padding="8px 50px";
+		edit.style.margin="5px 20px 5px 20px";
+		edit.style.borderRadius="20px";
+		
+		let Delete=document.createElement("button");
+		Delete.innerText="Delete";
+		Delete.style.padding="8px 50px";
+		Delete.style.margin="5px 30px 5px 50px";
+		Delete.style.borderRadius="20px";
+		Delete.onclick = function (){
+			
+			let array=[];
+			for(let i=0;i<totalData.length;i++){
+				if(totalData[i].serial_number != result.serial_number){
+					array.push(totalData[i]);
+					
+				}
+				else
+				{
+					console.log(totalData[i],result);
+				}
+				
+			}	
+			localStorage.removeItem("one");
+			localStorage.setItem("bookDetails",JSON.stringify(array));
+			alert("book is deleted");
+			window.location.href="viewpage.html";
+
+		
+		
+		}
+		
+		divTag.append(name,image,Author,Year,Price,type,Publisher,serialnumber,rate,edit,Delete);
+		
+		
+		display.append(divTag);
+		
+		
+		edit.onclick = function ()
+		{
+		       	display.innerHTML="";
+		       	
+			let divTag1=document.createElement("div");
+			divTag1.innerText="Name: ";
+			divTag1.style.width="30px";
+		
+			let nameTag=document.createElement("input");
+			nameTag.setAttribute("type","text");
+			nameTag.setAttribute("value",result.name);
+			nameTag.setAttribute("class","nameclass");
+			nameTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag1.append(nameTag);
+			divTag1.style.marginTop="1px";
+			
+			let divTag2=document.createElement("div");
+			divTag2.innerText="author:";
+			divTag2.style.width="30px";
+			let AuthorTag=document.createElement("input");
+			AuthorTag.setAttribute("type","text");
+			AuthorTag.setAttribute("value",result.author)
+			AuthorTag.setAttribute("class","authorclass");
+			AuthorTag.style.margin="-35px 1px 10px 150px";
+			
+			
+			divTag2.append(AuthorTag);
+			
+			
+			let divTag3=document.createElement("div");
+			divTag3.innerText="year:";
+			divTag3.style.width="30px";
+			let YearTag=document.createElement("input");
+			YearTag.setAttribute("type","text");
+			YearTag.setAttribute("value",result.year);
+			YearTag.setAttribute("class","yearclass");
+			YearTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag3.append(YearTag);
+			
+			let divTag4=document.createElement("div");
+			divTag4.innerText="price:";
+			divTag4.style.width="30px";
+			let PriceTag=document.createElement("input");
+			PriceTag.setAttribute("type","text");
+			PriceTag.setAttribute("value",result.price)
+			PriceTag.setAttribute("class","priceclass");
+			PriceTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag4.append(PriceTag);
+			
+			let divTag5=document.createElement("div");
+			divTag5.innerText="type:";
+			divTag5.style.width="30px";
+			let typeTag=document.createElement("input");
+			typeTag.setAttribute("type","text");
+			typeTag.setAttribute("value",result.type);
+			typeTag.setAttribute("class","typeclass");
+			typeTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag5.append(typeTag);
+			
+			let divTag6=document.createElement("div");
+			divTag6.innerText="publisher:";
+			divTag6.style.width="30px";
+			let PublisherTag=document.createElement("input");
+			PublisherTag.setAttribute("type","text");
+			PublisherTag.setAttribute("value",result.publisher);
+			PublisherTag.setAttribute("class","publisherclass");
+			PublisherTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag6.append(PublisherTag);
+			
+			let divTag7=document.createElement("div");
+			divTag7.innerText="S.no:";
+			divTag7.style.width="40px";
+			let numberTag=document.createElement("input");
+			numberTag.setAttribute("type","text");
+			numberTag.setAttribute("value",result.serial_number);
+			numberTag.setAttribute("class","serial_numberclass");
+			numberTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag7.append(numberTag);
+			
+			let divTag8=document.createElement("div");
+			divTag8.innerText="Rate:";
+			divTag8.style.width="30px";
+			let rateTag=document.createElement("input");
+			rateTag.setAttribute("type","text");
+			rateTag.setAttribute("value",result.rate);
+			rateTag.innerText="Rate";
+			rateTag.setAttribute("class","rateclass");
+			rateTag.style.margin="-35px 1px 10px 150px";
+			
+			divTag8.append(rateTag);
+
+			let divTag9=document.createElement("div");
+			let done=document.createElement("button");
+			done.innerText="Done";
+			divTag9.append(done);
+			divTag9.style.marginLeft="100px";
+			
+			divTag9.onclick = function ()
+			{
+				let name=document.querySelector(".nameclass").value;
+				let author=document.querySelector(".authorclass").value;
+				let year=document.querySelector(".yearclass").value;
+				let price=document.querySelector(".priceclass").value;
+				let type=document.querySelector(".typeclass").value;
+				let publisher=document.querySelector(".publisherclass").value;
+				let serial_number=document.querySelector(".serial_numberclass").value;
+				let rate=document.querySelector(".rateclass").value;
+				
+				let obj={name,author,year,price,type,publisher,serial_number,rate};
+				localStorage.setItem("onebook",JSON.stringify({...result,...obj}));
+				
+				let arr=[];
+				for(let i=0;i<totalData.length;i++){
+					if(totalData[i].serial_number == result.serial_number){
+						arr.push({...result,...obj});
+					}
+					else
+					{
+						arr.push(totalData[i]);
+					}
+				}
+				alert("edited");
+				localStorage.setItem("bookDetails",JSON.stringify(arr));
+				window.location.href="onebook.html";
+			}
+		      inputBox.append(divTag1,divTag2,divTag3,divTag4,divTag5,divTag6,divTag7,divTag8,divTag9);   
+		      inputBox.style.padding="10px 10px 10px 10px ";
+		      inputBox.style.border="2px solid black";
+		      inputBox.style.margin="10px 490px 10px 500px";
+		      inputBox.addEventListener("mouseover",(event) =>{});
+		      		inputBox.style.backgroundColor="green";
+		     
+		   
+		}
+	</script>
+</html>

@@ -1,0 +1,175 @@
+<html>
+	<head>
+		<title>signin</title>
+		<style>
+		body
+		{
+			background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRC27pOwZcltgMym2VIt15H8Ys7oNg3RommHA&usqp=CAU);
+			background-size:cover;
+		}
+		.nav
+		{
+			padding:8px 10px 8px 1px;
+			display:flex;
+			background-color:purple;
+			position:fixed;
+			top:0px;
+			left:0px;
+			width:100%;
+			
+		}
+		.imagesize
+		{
+			height:40px;
+			background:none;
+			margin-top:1px;
+		}
+		.titles
+		{
+			margin:10px 200px 10px 500px;
+			font-size:20px;
+			display:flex;
+			
+		}
+		.a
+		{
+			color:white;
+			margin-left:150px;
+			text-decoration:none;
+			font-size:25px;
+			
+		}
+		
+		.border
+		{
+			display:flex;
+			flex-direction:column;
+			margin:30px 500px 100px 500px;
+			padding:10px 10px 10px 10px;
+			border:2px solid black;
+			background-color:purple;
+		}
+		input
+		{
+			padding:7px 7px;
+			font-size:18px;
+			margin:10px;
+			border-radius:4px;
+		}
+		.button
+		{
+			padding:10px 10px;
+			margin:10px 10px 10px 10px;
+			font-size:19px;	
+			border-radius:20px;
+			background-color:green;
+		}
+		.button:hover
+		{
+			background-color:aqua;
+		}
+		.button1
+		{
+			padding:8px 8px;
+			margin:20px 10px 20px 250px;
+			border-radius:20px;
+			background-color:green;
+			
+		}
+		.button1:hover
+		{
+			background-color:aqua;
+		}
+		.signup
+		{
+			color:black;
+			
+			font-size:30px;
+			padding:10px 10px;
+			border:2px solid black;
+			margin:80px 590px 10px 590px;
+			text-align:center;
+			border-radius:30px;
+		}
+		.btn
+		{
+			text-decoration:none;
+			font-size:18px;
+		}
+		.text
+		{
+			margin-left:10px;
+			margin-top:20px;
+			font-size:20px;
+			margin-bottom:-10px;
+			color:white;
+		}
+		</style>
+	</head>
+	<body>
+		
+		<nav class="nav">
+			<a class="title"href="LibraryHomePage.html">
+			
+				<img class="imagesize" src="/home/jtbb/Books_library/library1.png" alt="image"/>
+			</a>
+			<div class="titles">
+				<a class="a" href="addbook.html"><b>AddBooks</b></a>
+				<a class="a" href="viewpage.html"><b>AllBooks</b></a>
+				<a class="a" href="loginLibrary.html"><b>Login</b></a>
+			
+			</div>	
+		</nav>
+		
+		<div class="signup"><b>SignUp Page</b></div>
+		<div class="border">
+			<div class="text"><b>Name</b></div>
+			<input class="name" type="text" placeholder="Name" />
+			<div class="text"><b>UserName</b></div>
+			<input class="username" type="text" placeholder="UserName" />
+			<div class="text"><b>Email</b></div>
+			<input class="email" type="email" placeholder="Email" />
+			<div class="text"><b>password</b></div>
+			<input class="password" type="password" placeholder="password" />
+			<div class="text"><b>Phone number</b></div>
+			<input class="number" type="number" placeholder="Phone number" />
+			<div class="text"><b>Admin code</b></div>
+			<input	class="admin" type="password" placeholder="Enter admin code" />		
+			<button class="button">signup</button>
+			<button class="button1"><a class="btn" href="loginLibrary.html">login</a></button>
+			
+		</div>
+	</body>
+	<script>
+		let result=JSON.parse(localStorage.getItem("libraryData"))||[];
+		let button=document.querySelector(".button");	
+		button.onclick = function (){
+			let name=document.querySelector(".name").value;
+			let username=document.querySelector(".username").value;
+			let email=document.querySelector(".email").value;
+			let password=document.querySelector(".password").value;
+			let number=document.querySelector(".number").value;
+			let admin=document.querySelector(".admin").value;
+			if(name !=="" && username !=="" && email !=="" && password !=="" && number !=="")
+			{
+				alert("successfull");
+				for(let i=0;i<result.length;i++){
+					if(result[i].username === username && result[i].admin === admin){
+						alert("username is already existed");
+						return;
+					}
+				}
+				localStorage.setItem("libraryData",JSON.stringify([...result,{name,username,email,password,number}]));
+				console.log(localStorage.getItem("libraryData"));
+				alert("successfull");
+				window.location.href="loginLibrary.html";
+				
+			}
+			else
+			{
+				alert("please fill all details");
+				return;
+			}
+		}
+	</script>
+</html>

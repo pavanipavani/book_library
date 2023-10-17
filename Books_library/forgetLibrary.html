@@ -1,0 +1,95 @@
+<html>
+	<head>
+		<title>forgot</title>
+		<style>
+		body
+		{
+			background-image:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl_z3gZGK7eQh2xyggz1aKR-gHgEos6cwVUA&usqp=CAU);
+			background-size:cover;
+		}
+		.title
+		{
+			padding:10px 10px ;
+			margin:50px 620px 50px 620px;
+			border:2px solid black;
+			text-align:center;
+			font-size:25px;
+			border-radius:30px;
+			background-color:white;
+		}
+		.form
+		{
+			display:flex;
+			flex-direction:column;
+			padding:10px 10px;
+			border:2px solid black;
+			margin:200px 550px 10px 550px;
+			background-color:white;
+		}
+		input
+		{
+			padding:8px 8px;
+			margin:10px;
+		}
+		.button
+		{
+			border-radius:30px;
+			background-color:aqua;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="title"><b>Forgot page</div>
+		<div class="form">
+			<input class="username" type="text" placeholder="Username" />
+			<input class="newpassword" type="password" placeholder="New password" />
+			<input class="conformpassword" type="password" placeholder="conform password" />
+			<input class="button" type="button" value="UPDATE"/>
+			<a class="login" href="loginLibrary.html">login</a>
+		</div>
+	</body>
+	<script>
+		let totalData = JSON.parse(localStorage.getItem("libraryData"))||[];
+		let button = document.querySelector(".button");
+		button.onclick = function (){
+			let user = document.querySelector(".username").value;
+			let newpass=document.querySelector(".newpassword").value;
+			let conformpass = document.querySelector(".conformpassword").value;
+			let flag = false;
+			if(newpass === conformpass){
+				let arr=[];
+				for(let i=0;i<totalData.length;i++){
+					if(totalData[i].username === user){
+						flag =true;
+						if(totalData[i].password !== newpass){
+							let obj = {...totalData,password:newpass}
+							arr.push(obj);
+						}
+						else
+						{
+							alert("old password and new password is same");
+							return;
+						}
+					}
+					else
+					{
+						arr.push(totalData[i]);
+					}
+				}
+				localStorage.setItem("libraryData",JSON.stringify(arr));
+				alert("password changed");
+				
+			}
+			else
+			{
+				alert("password is not mached");
+				return;
+			}
+			if(!flag){
+				alert("user does not exist");
+				return;
+			}
+			
+		}
+	</script>
+</html>
